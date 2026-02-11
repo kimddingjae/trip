@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>랜덤여행</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.7" />
+
+    <script src="city.js"></script>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=dad017c4813a35cb8acfc0a9f2e38ed1&libraries=services"></script>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="trip.css" />
+  </head>
+  <body>
+    <div id="loadingOverlay">
+      <div class="spinner"></div>
+    </div>
+
+    <h3 style="margin-top: 100px">띵재의 랜덤여행</h3>
+
+    <div class="controls-container">
+      <select class="slot" id="do">
+        <option value="전국">전국</option>
+      </select>
+
+      <div class="slot" id="sigun">시/군/구</div>
+
+      <button id="spinBtn">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <circle cx="15.5" cy="15.5" r="1.5"></circle>
+          <circle cx="15.5" cy="8.5" r="1.5"></circle>
+          <circle cx="8.5" cy="15.5" r="1.5"></circle>
+          <circle cx="12" cy="12" r="1.5"></circle>
+        </svg>
+      </button>
+
+      <button id="resetBtn">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M23 4v6h-6"></path>
+          <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div id="map"></div>
+    <div id="gptResult"></div>
+  </body>
+</html>
