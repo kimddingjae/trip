@@ -138,3 +138,39 @@ svg {
 .slot .tooltiptext {
   display: none; /* 모바일에서는 툴팁이 화면을 가리므로 숨기는 것이 깔끔합니다 */
 }
+
+/* AI 결과창 스타일 (기존 gptResult와 통일감 유지) */
+#aiResult {
+  width: calc(100% - 32px);
+  max-width: 600px;
+  height: 32vh; /* 지도 아래 남은 공간 활용 */
+  margin: 10px auto 20px auto;
+  padding: 15px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+
+  /* 핵심: AI 답변의 줄바꿈과 공백을 그대로 보존 */
+  white-space: pre-wrap; 
+  
+  /* 내용이 길어지면 박스 안에서만 스크롤 */
+  overflow-y: auto; 
+  
+  /* 그림자 효과로 입체감 추가 (선택 사항) */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* 스크롤바 디자인 (깔끔하게) */
+#aiResult::-webkit-scrollbar {
+  width: 6px;
+}
+#aiResult::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
