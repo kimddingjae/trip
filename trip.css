@@ -109,23 +109,6 @@ svg {
   flex-shrink: 0;
 }
 
-#gptResult {
-  width: calc(100% - 32px);
-  max-width: 600px;
-  height: 32vh; /* 남은 공간의 40% 가량 할당 */
-  margin: 10px auto 20px auto;
-  padding: 15px;
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 16px;
-  box-sizing: border-box;
-  text-align: left;
-  font-size: 14px;
-
-  /* 결과창 내부만 스크롤 허용 (전체 스크롤은 안 생김) */
-  overflow-y: auto;
-}
-
 /* 슬롯 내부 폰트 조정 (공간 확보) */
 .slot,
 #spinBtn,
@@ -173,4 +156,5 @@ svg {
   background-color: #ccc;
   border-radius: 10px;
 }
+
 
