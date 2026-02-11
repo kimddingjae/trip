@@ -129,14 +129,22 @@ function clear() {
 
   map = new kakao.maps.Map(mapContainer, mapOption);
   geocoder = new kakao.maps.services.Geocoder();
+
+  
 }
 
 function reset() {
   clear();
   const doElem = document.getElementById("do");
   const sigunElem = document.getElementById("sigun");
+  const aiResultElem = document.getElementById("aiResult"); // 💡 추가
+  
   doElem.value = "전국";
   sigunElem.innerText = "시/군/구";
+  
+  if (aiResultElem) {
+    aiResultElem.innerText = "여기에 AI 추천 결과가 나타납니다."; // 💡 초기화 메시지
+  }
 }
 
 function showLoading() {
