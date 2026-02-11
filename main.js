@@ -156,7 +156,6 @@ function hideLoading() {
   document.getElementById("loadingOverlay").style.display = "none";
 }
 
-// chat.js를 실제로 호출하는 통신 함수
 async function callGemini(text) {
   try {
     const response = await fetch(VERCEL_URL, {
@@ -165,12 +164,13 @@ async function callGemini(text) {
       body: JSON.stringify({ message: text })
     });
     
+    if (!response.ok) throw new Error("네트워크 응답 에러");
+
     const result = await response.json();
-    // Gemini의 응답 구조에 맞춰 텍스트 추출
-    console.log(result)
-    return result.candidates?.[0]?.content?.parts?.[0]?.text || "답변을 가져오지 못했습니다.";
+    // 💡 수정: 서버에서 보낸 'reply' 속성을 읽습니다.
+    return result.reply || "답변을 가져오지 못했습니다.";
   } catch (err) {
-    console.error("연결 에러:", err);
-    return "서버와 통신하는 중 오류가 발생했습니다.";
+    console.error("에러:", err);
+    return "서버 연결에 실패했습니다.";
   }
 }
