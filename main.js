@@ -166,6 +166,7 @@ async function callGemini(text) {
     if (!response.ok) throw new Error("네트워크 응답 에러");
     console.log(response)
     const result = await response.json();
+    console.log(result);
     // 💡 수정: 서버에서 보낸 'reply' 속성을 읽습니다.
     return result.reply || "답변을 가져오지 못했습니다.";
   } catch (err) {
