@@ -143,7 +143,7 @@ function reset() {
   sigunElem.innerText = "시/군/구";
   
   if (aiResultElem) {
-    aiResultElem.innerText = "여기에 AI 추천 결과가 나타납니다."; // 💡 초기화 메시지
+    aiResultElem.innerText = ""; // 💡 초기화 메시지
   }
 }
 
