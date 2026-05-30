@@ -1,6 +1,6 @@
 // city.js
 
-const regions: [
+const regions = [
 "부산광역시",
 "울산광역시",
 "강원특별자치도",
@@ -11,7 +11,7 @@ const regions: [
 "경상남도"
  ];
 
-const sigun: {
+const sigun = {
 "부산광역시": ["부산"],
 "울산광역시": ["울산"]
 "강원특별자치도": [
