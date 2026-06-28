@@ -237,6 +237,76 @@
         color: #64748b;
       }
 
+      .travel-hints {
+        flex-shrink: 0;
+        margin: 0 16px 8px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+      }
+      .travel-hints[hidden] {
+        display: none;
+      }
+      .travel-hints-title {
+        margin: 0 0 6px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #475569;
+      }
+      .travel-hints-origin {
+        margin: 0 0 8px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #3b82f6;
+      }
+      .travel-hints-source {
+        margin: 8px 0 0;
+        font-size: 10px;
+        color: #94a3b8;
+        text-align: right;
+      }
+      .travel-hints-msg {
+        margin: 0;
+        font-size: 12px;
+        color: #94a3b8;
+      }
+      .travel-hints-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .travel-hint-row {
+        display: grid;
+        grid-template-columns: auto auto 1fr auto;
+        align-items: center;
+        gap: 6px 8px;
+        font-size: 13px;
+      }
+      .travel-hint-icon {
+        font-size: 15px;
+        line-height: 1;
+      }
+      .travel-hint-label {
+        font-weight: 700;
+        color: #1e293b;
+        min-width: 2.2em;
+      }
+      .travel-hint-time {
+        font-weight: 600;
+        color: #3b82f6;
+      }
+      .travel-hint-dist {
+        font-size: 12px;
+        color: #64748b;
+        text-align: right;
+      }
+      .travel-hint-note {
+        grid-column: 2 / -1;
+        font-size: 11px;
+        color: #94a3b8;
+      }
+
       .result-tabs {
         flex-shrink: 0;
         display: flex;
@@ -455,6 +525,7 @@
           <span class="result-region" id="result-region"></span>
           <span class="result-sub">AI 추천</span>
         </div>
+        <div id="travel-hints" class="travel-hints" hidden></div>
         <div class="result-tabs">
           <button
             type="button"

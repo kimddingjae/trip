@@ -29,5 +29,6 @@ export const dom = {
   resultRegion: null,
   resultBody: null,
   resultTabs: null,
+  travelHints: null,
   aiLoadingOverlay: null,
 };

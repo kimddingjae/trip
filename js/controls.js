@@ -119,5 +119,6 @@ export function initDomRefs() {
   dom.resultRegion = document.getElementById("result-region");
   dom.resultBody = document.getElementById("result-body");
   dom.resultTabs = dom.resultPanel.querySelectorAll(".result-tab");
+  dom.travelHints = document.getElementById("travel-hints");
   dom.aiLoadingOverlay = document.getElementById("ai-loading-overlay");
 }
