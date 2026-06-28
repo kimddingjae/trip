@@ -51,6 +51,7 @@ export async function loadTravelHints(cityCode) {
   return {
     originLabel: data.originLabel || "현재 위치",
     hints: data.hints || [],
+    transitNote: data.transitNote || null,
   };
 }
 
@@ -88,13 +89,14 @@ export function renderTravelHintsLoading() {
     <p class="travel-hints-msg">경로 조회 중…</p>`;
 }
 
-export function renderTravelHints({ originLabel, hints }) {
+export function renderTravelHints({ originLabel, hints, transitNote }) {
   if (!dom.travelHints) return;
   dom.travelHints.hidden = false;
   dom.travelHints.innerHTML = `
     <p class="travel-hints-title">🧭 교통 힌트</p>
     <p class="travel-hints-origin">출발 · ${escapeHtml(originLabel)}</p>
     <div class="travel-hints-list">${renderHintRows(hints)}</div>
+    ${transitNote ? `<p class="travel-hints-msg">${escapeHtml(transitNote)}</p>` : ""}
     <p class="travel-hints-source">TMAP 실시간 경로 데이터</p>`;
 }
 
