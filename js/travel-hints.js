@@ -63,6 +63,23 @@ function escapeHtml(text) {
     .replace(/"/g, "&quot;");
 }
 
+function travelHintsInner() {
+  return dom.travelHints?.querySelector(".travel-hints-inner");
+}
+
+function setTravelSummary(text) {
+  const summary = dom.travelHints?.querySelector(".travel-hints-summary");
+  if (summary) summary.textContent = text;
+}
+
+function formatHintsSummary(hints) {
+  if (!hints.length) return "🧭 교통 힌트";
+  const car = hints.find((h) => h.label === "자차");
+  const primary = car || hints[0];
+  const extra = hints.length > 1 ? ` 외 ${hints.length - 1}건` : "";
+  return `🧭 ${primary.icon} ${primary.time} · ${primary.distance}${extra}`;
+}
+
 function renderHintRows(hints) {
   if (!hints.length) {
     return '<p class="travel-hints-msg">대중교통 경로를 찾지 못했습니다.</p>';
@@ -84,16 +101,20 @@ function renderHintRows(hints) {
 export function renderTravelHintsLoading() {
   if (!dom.travelHints) return;
   dom.travelHints.hidden = false;
-  dom.travelHints.innerHTML = `
-    <p class="travel-hints-title">🧭 교통 힌트</p>
-    <p class="travel-hints-msg">경로 조회 중…</p>`;
+  dom.travelHints.open = true;
+  setTravelSummary("🧭 경로 조회 중…");
+  const inner = travelHintsInner();
+  if (inner) inner.innerHTML = '<p class="travel-hints-msg">잠시만 기다려 주세요.</p>';
 }
 
 export function renderTravelHints({ originLabel, hints, transitNote }) {
   if (!dom.travelHints) return;
   dom.travelHints.hidden = false;
-  dom.travelHints.innerHTML = `
-    <p class="travel-hints-title">🧭 교통 힌트</p>
+  dom.travelHints.open = false;
+  setTravelSummary(formatHintsSummary(hints));
+  const inner = travelHintsInner();
+  if (!inner) return;
+  inner.innerHTML = `
     <p class="travel-hints-origin">출발 · ${escapeHtml(originLabel)}</p>
     <div class="travel-hints-list">${renderHintRows(hints)}</div>
     ${transitNote ? `<p class="travel-hints-msg">${escapeHtml(transitNote)}</p>` : ""}
@@ -103,13 +124,17 @@ export function renderTravelHints({ originLabel, hints, transitNote }) {
 export function renderTravelHintsError(message) {
   if (!dom.travelHints) return;
   dom.travelHints.hidden = false;
-  dom.travelHints.innerHTML = `
-    <p class="travel-hints-title">🧭 교통 힌트</p>
-    <p class="travel-hints-msg">${escapeHtml(message)}</p>`;
+  dom.travelHints.open = true;
+  setTravelSummary("🧭 교통 힌트");
+  const inner = travelHintsInner();
+  if (inner) inner.innerHTML = `<p class="travel-hints-msg">${escapeHtml(message)}</p>`;
 }
 
 export function clearTravelHints() {
   if (!dom.travelHints) return;
   dom.travelHints.hidden = true;
-  dom.travelHints.innerHTML = "";
+  dom.travelHints.open = false;
+  setTravelSummary("🧭 교통 힌트");
+  const inner = travelHintsInner();
+  if (inner) inner.innerHTML = "";
 }
