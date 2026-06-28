@@ -119,7 +119,5 @@ export function initDomRefs() {
   dom.resultRegion = document.getElementById("result-region");
   dom.resultBody = document.getElementById("result-body");
   dom.resultTabs = dom.resultPanel.querySelectorAll(".result-tab");
-  dom.cntEl = document.getElementById("cnt");
-  dom.cntEl.textContent = state.visitCodes.size;
   dom.aiLoadingOverlay = document.getElementById("ai-loading-overlay");
 }

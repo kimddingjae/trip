@@ -1,4 +1,4 @@
-import { LABEL, VISIT_PINK, VISIT_PINK_STROKE } from "./constants.js";
+import { LABEL } from "./constants.js";
 import { dom, state } from "./state.js";
 
 function getZoomScale() {
@@ -7,16 +7,6 @@ function getZoomScale() {
 
 function getLabelFontSize() {
   return LABEL.fontSize / getZoomScale();
-}
-
-export function applyVisitLabelStyle(el) {
-  el.attr("font-size", getLabelFontSize())
-    .attr("font-family", LABEL.fontFamily)
-    .attr("font-weight", LABEL.fontWeight)
-    .attr("fill", "#ffffff")
-    .attr("stroke", "#831843")
-    .attr("stroke-width", 2 / getZoomScale())
-    .attr("paint-order", "stroke");
 }
 
 export function applyDefaultLabelStyle(el) {
@@ -46,20 +36,11 @@ export function applyDefaultStyle(el) {
     .attr("stroke-width", 0.8);
 }
 
-export function applyVisitedStyle(el) {
-  el.attr("fill", VISIT_PINK)
-    .attr("fill-opacity", 0.55)
-    .attr("stroke", VISIT_PINK_STROKE)
-    .attr("stroke-width", 1.2);
-}
-
-export function styleByCode(code) {
-  if (state.visitCodes.has(code)) return applyVisitedStyle;
+export function styleByCode() {
   return applyDefaultStyle;
 }
 
-export function restoreStyle(code) {
-  if (state.visitCodes.has(code)) return applyVisitedStyle;
+export function restoreStyle() {
   return applyDefaultStyle;
 }
 
@@ -68,7 +49,6 @@ export function refreshSelectedLabel() {
     const el = d3.select(this);
     const code = el.attr("data-code");
     if (code === state.selectedCode) applySelectedLabelStyle(el);
-    else if (state.visitCodes.has(code)) applyVisitLabelStyle(el);
     else applyDefaultLabelStyle(el);
   });
 }
@@ -84,6 +64,5 @@ export function appendLabel(code, x, y, label) {
     .attr("pointer-events", "none")
     .text(label);
   if (code === state.selectedCode) applySelectedLabelStyle(text);
-  else if (state.visitCodes.has(code)) applyVisitLabelStyle(text);
   else applyDefaultLabelStyle(text);
 }
